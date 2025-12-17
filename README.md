@@ -5,12 +5,11 @@
 This is a Python-based desktop pet (Shimeji) that roams the bottom of your screen while you work. It features a frameless, transparent window that stays on top of your other applications, keeping you company during those long coding sessions.
 
 ## 🌟 Features
-- **Transparent Background:** Uses Windows color keying for a seamless "sticker" look.
-- **Taskbar Roaming:** Santa spawns and walks randomly along the bottom of the screen (on top of the taskbar).
-- **Customizable:** Speed, size, and spawn location can be tweaked via a config file.
-- **Modular Design:** Code is structured using Separation of Concerns (Logic, View, and Configuration).
-- **Interactive Physics:** Drag and drop Santa anywhere on the screen.
+- **Interactive Physics:** Drag and drop Santa anywhere on the screen!
+- **Taskbar Roaming:** Santa spawns and walks randomly along the bottom of the screen.
 - **Gravity Engine:** Santa automatically falls back to the taskbar when released.
+- **Customizable:** Speed, size, and spawn location can be tweaked via a config file.
+- **Smart Animation:** Custom states for Walking (Left/Right), Idling (Blinking), Falling, and Dragging.
 
 ## 📂 Project Structure
 ```text
@@ -47,15 +46,18 @@ python src/main.py
 ⚙️ ConfigurationYou can customize Santa's behavior by editing src/config.py:
 | Variable | Description | Default |
 | :--- | :--- | :--- |
-| `SPEED` | How many pixels he moves per update. | `1` (Slow) |
-| `SCALE_FACTOR` | Resizes the GIF (Higher = Smaller). | `4` |
+| `SPEED` | How many pixels he moves per update. | `3` |
+| `GRAVITY` | Resizes the GIF (Higher = Smaller). | `20` |
+| `ANIMATIOIN_DELAYS` | Resizes the GIF (Higher = Smaller). | `varies` |
 | `BOTTOM_OFFSET` | Pixel distance from the bottom of the screen. | `40` |
 
 🎮 Controls
+- **Drag & Drop:** Click and hold Left Mouse Button to move Santa.
 - **Right-Click Santa:** Close the application immediately.
 - **Ctrl+C (Terminal):** Force stop the script if running from the command line.
 
 🛠️ Technologies Used
 - **Python:** Core programming language.
 - **Tkinter:** GUI toolkit for window management.
+- **Piskel:** Used to create and edit pixel art animations.
 - **MVC Pattern:** Code separated into Behavior (Model), Animation (View), and Controller.
