@@ -29,7 +29,7 @@ Python 3.x installed (Make sure to check "Add to PATH" during installation).
 Installation
 1. Clone this repository:
 ```Bash
-git clone [https://github.com/YOUR_USERNAME/desktop-santa-shimeji.git](https://github.com/YOUR_USERNAME/desktop-santa-shimeji.git)
+git clone [https://github.com/lemongoreng/desktop-santa-shimeji.git](https://github.com/lemongoreng/desktop-santa-shimeji.git)
 ```
 2. Navigate to the project folder:
 ```Bash
