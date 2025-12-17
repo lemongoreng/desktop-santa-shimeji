@@ -9,6 +9,8 @@ This is a Python-based desktop pet (Shimeji) that roams the bottom of your scree
 - **Taskbar Roaming:** Santa spawns and walks randomly along the bottom of the screen (on top of the taskbar).
 - **Customizable:** Speed, size, and spawn location can be tweaked via a config file.
 - **Modular Design:** Code is structured using Separation of Concerns (Logic, View, and Configuration).
+- **Interactive Physics:** Drag and drop Santa anywhere on the screen.
+- **Gravity Engine:** Santa automatically falls back to the taskbar when released.
 
 ## 📂 Project Structure
 ```text
