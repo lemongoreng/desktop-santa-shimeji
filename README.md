@@ -1,6 +1,10 @@
 # Desktop Santa Shimeji 🎅
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9b27a9dd-feba-409a-bddc-91487798a77c" width="720" />
 
-**Lonely and coding alone this Christmas? Look no further!**
+  **Lonely and coding alone this Christmas? Look no further!**
+
+</div>
 
 This is a Python-based desktop pet (Shimeji) that roams the bottom of your screen while you work. It features a frameless, transparent window that stays on top of your other applications, keeping you company during those long coding sessions.
 
