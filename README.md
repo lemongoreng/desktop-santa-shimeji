@@ -27,7 +27,7 @@ SANTA_SHIMEJI/
 │   └── assets/        # Visual assets
 └── README.md
 ```
-🚀 How to Run
+## 🚀 How to Run
 Prerequisites
 Python 3.x installed (Make sure to check "Add to PATH" during installation).
 
@@ -47,12 +47,13 @@ cd desktop-santa-shimeji
 python src/main.py
 ```
 
-⚙️ ConfigurationYou can customize Santa's behavior by editing src/config.py:
+## ⚙️ Configuration
+You can customize Santa's behavior by editing src/config.py:
 | Variable | Description | Default |
 | :--- | :--- | :--- |
 | `SPEED` | How many pixels he moves per update. | `3` |
 | `GRAVITY` | Resizes the GIF (Higher = Smaller). | `20` |
-| `ANIMATIOIN_DELAYS` | Resizes the GIF (Higher = Smaller). | `varies` |
+| `ANIMATION_DELAYS` | Resizes the GIF (Higher = Smaller). | `varies` |
 | `BOTTOM_OFFSET` | Pixel distance from the bottom of the screen. | `40` |
 
 🎮 Controls
