@@ -49,7 +49,7 @@ python src/main.py
 | :--- | :--- | :--- |
 | `SPEED` | How many pixels he moves per update. | `1` (Slow) |
 | `SCALE_FACTOR` | Resizes the GIF (Higher = Smaller). | `4` |
-| `BOTTOM_OFFSET` | Pixel distance from the bottom of the screen. | `10` |
+| `BOTTOM_OFFSET` | Pixel distance from the bottom of the screen. | `40` |
 
 🎮 Controls
 - **Right-Click Santa:** Close the application immediately.
