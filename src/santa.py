@@ -1,81 +1,66 @@
 import tkinter as tk
-import os
+import config
+from animation import GifAnimator
+from behavior import SantaBehavior
 
 class DesktopSanta:
     def __init__(self, root):
         self.root = root
 
-        # --- UPDATED PATH SETUP ---
-        # Get the path to this file (src/santa.py)
-        current_dir = os.path.dirname(__file__)
-        
-        # 'assets' is now directly inside the current directory
-        # No more ".." needed!
-        image_path = os.path.join(current_dir, 'assets', 'santa.gif')
-        
-        # --- LOAD IMAGE ---
-        try:
-            self.img = tk.PhotoImage(file=image_path)
-        except Exception as e:
-            print(f"Error: Could not find image at {image_path}")
-            return
+        # 1. Setup Window
+        self.setup_window()
 
-        # --- WINDOW CONFIG ---
+        # 2. Load Assets
+        asset_path = config.get_asset_path('santa.gif')
+        self.animator = GifAnimator(asset_path)
+        
+        # 3. Setup Label
+        first_frame = self.animator.get_first_frame()
+        self.label = tk.Label(self.root, image=first_frame, bg='black', bd=0)
+        self.label.pack()
+        self.root.bind("<Button-3>", self.quit_app)
+
+        # 4. Setup Behavior (The Brain)
+        screen_w = self.root.winfo_screenwidth()
+        screen_h = self.root.winfo_screenheight()
+        
+        # Calculate floor Y position based on image height
+        santa_h = first_frame.height()
+        floor_y = screen_h - santa_h - config.BOTTOM_OFFSET
+        
+        self.brain = SantaBehavior(screen_w, floor_y)
+
+        # 5. Start Loops
+        self.update_movement()
+        self.update_animation()
+
+    def setup_window(self):
         self.root.overrideredirect(True)
         self.root.config(bg='black')
         self.root.wm_attributes("-transparentcolor", "black")
         self.root.wm_attributes("-topmost", True)
-        
-        self.label = tk.Label(self.root, image=self.img, bg='black', bd=0)
-        self.label.pack()
-        
-        # NEW: Bind right-click to close the app
-        # <Button-3> is the code for Right-Click on Windows
-        self.root.bind("<Button-3>", self.quit_app)
 
-        # Screen Dimensions
-        self.screen_width = self.root.winfo_screenwidth()
-        self.screen_height = self.root.winfo_screenheight()
+    def update_movement(self):
+        # Ask the brain for the next coordinates
+        new_x, new_y = self.brain.calculate_next_step(config.SPEED)
         
-        # Initial State
-        self.x = 0
-        self.y = 0
-        self.speed = 4
-        self.direction = 'top' 
+        # Update Window Position
+        w = self.animator.get_first_frame().width()
+        h = self.animator.get_first_frame().height()
+        self.root.geometry(f'{w}x{h}+{new_x}+{new_y}')
         
-        self.update_position()
+        # Loop
+        self.root.after(config.MOVEMENT_DELAY, self.update_movement)
 
-    def update_position(self):
-        w = self.img.width()
-        h = self.img.height()
-
-        # Movement Logic
-        if self.direction == 'top':
-            self.x += self.speed
-            self.y = 0
-            if self.x >= self.screen_width - w:
-                self.direction = 'right'
-                
-        elif self.direction == 'right':
-            self.x = self.screen_width - w
-            self.y += self.speed
-            if self.y >= self.screen_height - h:
-                self.direction = 'bottom'
-                
-        elif self.direction == 'bottom':
-            self.x -= self.speed
-            self.y = self.screen_height - h
-            if self.x <= 0:
-                self.direction = 'left'
-                
-        elif self.direction == 'left':
-            self.x = 0
-            self.y -= self.speed
-            if self.y <= 0:
-                self.direction = 'top'
-
-        self.root.geometry(f'{w}x{h}+{self.x}+{self.y}')
-        self.root.after(50, self.update_position)
+    def update_animation(self):
+        # Get next frame from animator
+        frame = self.animator.next_frame()
+        if frame:
+            self.label.config(image=frame)
         
-        def quit_app(self, event):
-            self.root.quit()
+        # Loop
+        self.root.after(config.ANIMATION_DELAY, self.update_animation)
+
+    def quit_app(self, event):
+        self.root.destroy()
+        return "break"
