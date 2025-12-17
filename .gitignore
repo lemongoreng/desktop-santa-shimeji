@@ -5,3 +5,12 @@ __pycache__/
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# PyInstaller Artifacts (Do not upload these!)
+build/
+dist/
+*.spec
+*.exe
+
+# Temporary system files
+__pycache__/
